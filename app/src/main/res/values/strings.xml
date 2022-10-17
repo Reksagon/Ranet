@@ -11,4 +11,28 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    
+    <!--SearchActivity-->
+    <string name="search_order">Search order</string>
+    <string name="search">search</string>
+
+    <!--MenuActivity-->
+    <string name="main_menu">main menu</string>
+
+    <!--SignatureActivity-->
+    <string name="change_order_state">Change Order State</string>
+    <string name="sign_order">sign order</string>
+
+    <!--OrderItem-->
+    <string name="product_name">Product Name:</string>
+    <string name="product_code">Product Code:</string>
+    <string name="price">Price/Unit:</string>
+    <string name="amount">Amount:</string>
+    <string name="total">Total:</string>
+    <string name="products">Products:</string>
+    <string name="shipping">Shipping:</string>
+
+    <!--OrderActivity-->
+    <string name="searched_order">Searched order</string>
+    <string name="signature">Signature/Unterschrift</string>
 </resources>

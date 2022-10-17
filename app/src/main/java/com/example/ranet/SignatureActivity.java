@@ -22,6 +22,8 @@ import com.example.ranet.Models.Prestashop;
 import com.example.ranet.Network.GetDataService;
 import com.example.ranet.Network.RetrofitClientInstance;
 import com.example.ranet.Utils.CapturePhotoUtils;
+import com.example.ranet.databinding.ActivitySearchBinding;
+import com.example.ranet.databinding.ActivitySignatureBinding;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
 import java.io.File;
@@ -38,27 +40,31 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignatureActivity extends AppCompatActivity {
-    SignaturePad mSignaturePad;
-    Button orderStateChange;
+
     ProgressDialog progress;
     private static final int PERMISSION_REQUEST_CODE = 1;
     String id;
     Bitmap url;
     String ApiKey = "T1YL5AWXIUMJGGBKKDTEY4I14SYIFZSW";
+    ActivitySignatureBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signature);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Sign Order");
+        binding = ActivitySignatureBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.bttnBackSignature.setOnClickListener(v->
+        {
+            super.onBackPressed();
+        });
+
         progress = new ProgressDialog(this);
         if (getIntent() != null && getIntent().getExtras().containsKey("id")) {
             id = getIntent().getStringExtra("id");
         }
-        orderStateChange = findViewById(R.id.orderStateChange);
-        mSignaturePad = (SignaturePad) findViewById(R.id.signature_pad);
-        mSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
+
+        binding.signaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
 
             @Override
             public void onStartSigning() {
@@ -76,18 +82,18 @@ public class SignatureActivity extends AppCompatActivity {
                 //Event triggered when the pad is cleared
             }
         });
-        orderStateChange.setOnClickListener(new View.OnClickListener() {
+        binding.bttnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (Build.VERSION.SDK_INT >= 23) {
                     if (checkPermission()) {
                         // Code for above or equal 23 API Oriented Device
                         // Your Permission granted already .Do next code
-                        Bitmap bitmap = CapturePhotoUtils.insertImage(getContentResolver(), mSignaturePad.getSignatureBitmap(), "signature", "orderSignature");
+                        Bitmap bitmap = CapturePhotoUtils.insertImage(getContentResolver(), binding.signaturePad.getSignatureBitmap(), "signature", "orderSignature");
                         if (bitmap != null) {
                             setImage(persistImage(bitmap, "orderImage", getApplicationContext()));
-                            //    searchOrders(id);
-                            //finish();
+                                searchOrders(id);
+                            finish();
                         }else{
                             Toast.makeText(getApplicationContext(), "Image is not saved", Toast.LENGTH_SHORT).show();
                         }
@@ -100,11 +106,11 @@ public class SignatureActivity extends AppCompatActivity {
                     if (checkPermission()) {
                         // Code for above or equal 23 API Oriented Device
                         // Your Permission granted already .Do next code
-                        Bitmap bitmap = CapturePhotoUtils.insertImage(getContentResolver(), mSignaturePad.getSignatureBitmap(), "signature", "orderSignature");
+                        Bitmap bitmap = CapturePhotoUtils.insertImage(getContentResolver(), binding.signaturePad.getSignatureBitmap(), "signature", "orderSignature");
                         if (bitmap != null) {
                             setImage(persistImage(bitmap, "orderImage", getApplicationContext()));
-                            //    searchOrders(id);
-                            //finish();
+                                searchOrders(id);
+                            finish();
                         }else{
                             Toast.makeText(getApplicationContext(), "Image is not saved", Toast.LENGTH_SHORT).show();
                         }
@@ -157,7 +163,7 @@ public class SignatureActivity extends AppCompatActivity {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.e("value", "Permission Granted, Now you can use local drive .");
-                    url = CapturePhotoUtils.insertImage(getContentResolver(), mSignaturePad.getSignatureBitmap(), "signature", "orderSignature");
+                    url = CapturePhotoUtils.insertImage(getContentResolver(), binding.signaturePad.getSignatureBitmap(), "signature", "orderSignature");
                     if (url != null) {
                         Toast.makeText(SignatureActivity.this, "Image Added Successfully", Toast.LENGTH_LONG).show();
                         finish();

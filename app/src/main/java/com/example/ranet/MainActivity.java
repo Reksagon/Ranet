@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         boolean login_check = sp1.getBoolean("login", false);
         if (login_check) {
-            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            Intent intent = new Intent(MainActivity.this, MenuActivity.class);
             startActivity(intent);
             finish();
             return;
@@ -107,14 +107,10 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences sp =  PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                         SharedPreferences.Editor Ed = sp.edit();
                         Ed.putBoolean("login", true).apply();
-                        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                        startActivity(intent);
-                        finish();
                     }
+                    Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                    finish();
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Incorrect Email or Password", Toast.LENGTH_LONG).show();

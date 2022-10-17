@@ -8,48 +8,110 @@
     tools:context=".SearchActivity">
 
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/border"
-        android:textSize="20sp"
-        android:ems="13"
-        android:hint="Search here"
-        android:inputType="number"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#367723"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/search"
-        android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/bttn_back_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout
+        android:id="@+id/content_history_non_expand"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="Search"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        app:ccll_child_corner_cut_depth="0dp"
+        app:ccll_corner_cut_size="30dp"
+        app:ccll_custom_shadow_color="#80000000"
+        app:ccll_custom_shadow_radius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <EditText
+            android:id="@+id/edttxt_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_edittext"
+            android:ems="13"
+            android:fontFamily="@font/opensans_regular"
+            android:hint="Search here"
+            android:inputType="number"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="60dp"
+            android:textSize="20sp" />
+
+    </io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout>
+
+    <io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout
+        android:id="@+id/content_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        app:ccll_child_corner_cut_depth="0dp"
+        app:ccll_corner_cut_size="30dp"
+        app:ccll_custom_shadow_color="#80000000"
+        app:ccll_custom_shadow_radius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_green_selector"
+            android:fontFamily="@font/opensans_regular"
+            android:text="Search"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+    </io.devlight.xtreeivi.cornercutlinearlayout.CornerCutLinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="top"
-        android:text="Search Your Orders"
-        android:textColor="@color/purple_500"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/opensans_semibold"
+        android:text="@string/search_order"
+        android:textAllCaps="true"
+        android:textColor="#343434"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/content_history_non_expand"
+        app:layout_constraintEnd_toEndOf="@+id/content_history_non_expand"
+        app:layout_constraintTop_toTopOf="@+id/content_history_non_expand"
+        app:srcCompat="@drawable/ic_search" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,6 +32,7 @@ import com.example.ranet.Models.OrderRow;
 import com.example.ranet.Models.Order_;
 import com.example.ranet.Network.GetDataService;
 import com.example.ranet.Network.RetrofitClientInstance;
+import com.example.ranet.databinding.ActivitySearchBinding;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
@@ -41,46 +42,34 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity{
-    Button search;
-    TextView employeeName, email;
-    EditText editTextTextPersonName;
+
     ProgressDialog progress;
     Order order;
     Order_ order_;
-    ConstraintLayout mainLayout;
     String ApiKey = "T1YL5AWXIUMJGGBKKDTEY4I14SYIFZSW";
-    private AppBarConfiguration mAppBarConfiguration;
-    RelativeLayout relativeLayout;
-    DrawerLayout drawer;
+    ActivitySearchBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        progress = new ProgressDialog(this);
+        binding.bttnBackSearch.setOnClickListener(v->{
+            super.onBackPressed();
+        });
 
-        search.setOnClickListener(new View.OnClickListener() {
+        binding.search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (editTextTextPersonName.getText().toString().isEmpty()) {
+                if (binding.edttxtSearch.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Enter Something in search field.", Toast.LENGTH_LONG);
                 } else {
-                    searchOrders(editTextTextPersonName.getText().toString());
-                    editTextTextPersonName.setText("");
+                    searchOrders(binding.edttxtSearch.getText().toString());
+                    binding.edttxtSearch.setText("");
                 }
             }
         });
-        mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (editTextTextPersonName.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Enter Something in search field.", Toast.LENGTH_LONG);
-                } else {
-                    searchOrders(editTextTextPersonName.getText().toString());
-                    editTextTextPersonName.setText("");
-                }
-            }
-        });
-
     }
 
     public void showProgress() {
